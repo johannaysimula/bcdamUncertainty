@@ -65,7 +65,7 @@ const createHistogramData = (data: number[], binCount: number) => {
   return { labels, bins };
 };
 
-// Funksjon for å lage kumulativ data (CDF)
+// Funksjon for å lage kumulativ data (CDF) JO: Bruker ikke!
 const createCumulativeData = (data: number[]) => {
   const sortedData = [...data].sort((a, b) => a - b);
   const totalPoints = sortedData.length;
@@ -91,7 +91,7 @@ const createCumulativeData = (data: number[]) => {
 export const MonteCarloChartSet = ({ data, title }: ChartProps) => {
   // Prosesser data for Histogram (PDF)
   const histogram = useMemo(() => {
-    const { labels, bins } = createHistogramData(data, 50); // 50 grupper
+    const { labels, bins } = createHistogramData(data, 100); // 50 grupper JO: Nå 100
     return {
       labels,
       datasets: [
@@ -104,15 +104,21 @@ export const MonteCarloChartSet = ({ data, title }: ChartProps) => {
     };
   }, [data, title]);
 
-  // Prosesser data for Kumulativ (CDF)
+  // Prosesser data for Kumulativ (CDF) JO: ENDRET
   const cumulative = useMemo(() => {
-    const { labels, cumulativePercent } = createCumulativeData(data);
+    const cumulativesum = ((sum: number) => (value: number) => sum += value)(0);
+    const { labels, bins } = createHistogramData(data, 100); // 100 grupper
+    //onsole.log(bins);
+    const percentbins = bins.map((x:number)=>x/100);
+    //console.log(percentbins);
+    const cumulativebins = percentbins.map(cumulativesum);
+    //console.log(cumulativebins);
     return {
       labels,
       datasets: [
         {
           label: `Cumulative % of ${title}`,
-          data: cumulativePercent,
+          data: cumulativebins,
           fill: false,
           borderColor: "rgb(255, 139, 0)", // Atlassian Oransje
           tension: 0.1,

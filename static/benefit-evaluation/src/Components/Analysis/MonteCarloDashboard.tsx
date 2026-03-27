@@ -248,7 +248,7 @@ export const MonteCarloDashboard = ({
                 <Box xcss={kpiValueStyle} style={{ color: "#DE350B" }}>
                   {" "}
                   {/* Rød */}
-                  {simulationSummary.benefit.p35.toFixed(0)}
+                  {simulationSummary.benefit.p35.toFixed(2)}
                 </Box>
               </Box>
               <Box xcss={kpiBoxStyle}>
@@ -256,7 +256,7 @@ export const MonteCarloDashboard = ({
                 <Box xcss={kpiValueStyle} style={{ color: "#0065FF" }}>
                   {" "}
                   {/* Blå */}
-                  {simulationSummary.benefit.p50.toFixed(0)}
+                  {simulationSummary.benefit.p50.toFixed(2)}
                 </Box>
               </Box>
               <Box xcss={kpiBoxStyle}>
@@ -264,7 +264,7 @@ export const MonteCarloDashboard = ({
                 <Box xcss={kpiValueStyle} style={{ color: "#36B37E" }}>
                   {" "}
                   {/* Grønn */}
-                  {simulationSummary.benefit.p85.toFixed(0)}
+                  {simulationSummary.benefit.p85.toFixed(2)}
                 </Box>
               </Box>
             </Flex>

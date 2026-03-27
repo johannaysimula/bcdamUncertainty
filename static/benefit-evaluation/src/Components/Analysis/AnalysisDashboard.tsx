@@ -49,6 +49,8 @@ export const AnalysisDashboard = ({ items }: KpiProps) => {
   // Bruker useMemo for å beregne totalene kun når 'items' endres
   const totals = useMemo(() => {
     let totalBenefit = 0;
+    let totalCost = 0; //JO
+    let totalTime = 0; //JO
     let totalExpectedCost = 0;
     let totalExpectedTime = 0;
     let totalExpectedBenefit = 0;
@@ -63,12 +65,14 @@ export const AnalysisDashboard = ({ items }: KpiProps) => {
       const O_Cost = item.issueCost?.costOptimistic ?? M_Cost;
       const P_Cost = item.issueCost?.costPessimistic ?? M_Cost;
       totalExpectedCost += calculateExpectedValue(O_Cost, M_Cost, P_Cost);
+      totalCost += M_Cost; // JO: added
 
       // --- FIKS: Beregn og summer E-Time ---
       const M_Time = item.issueCost?.time || 1;
       const O_Time = item.issueCost?.timeOptimistic ?? M_Time;
       const P_Time = item.issueCost?.timePessimistic ?? M_Time;
       totalExpectedTime += calculateExpectedValue(O_Time, M_Time, P_Time);
+      totalTime += M_Time; // JO: added
 
       const M_Benefit = properties?.evaluation_points?.value || 1;
       const O_Benefit = item.issueCost?.benefitOptimistic ?? M_Benefit;
@@ -86,6 +90,8 @@ export const AnalysisDashboard = ({ items }: KpiProps) => {
 
     return {
       benefit: totalBenefit,
+      costpoints: totalCost, //JO
+      timepoints: totalTime, //JO
       benefitPERT: totalExpectedBenefit,
       cost: totalExpectedCost,
       time: totalExpectedTime,
@@ -101,7 +107,7 @@ export const AnalysisDashboard = ({ items }: KpiProps) => {
           <Box xcss={kpiValueStyle} style={{ color: "#0065FF" }}>
             {" "}
             {/* Blå */}
-            {totals.benefit.toFixed(0)}
+            {totals.benefit.toFixed(2)}
           </Box>
         </Box>
 
@@ -114,12 +120,31 @@ export const AnalysisDashboard = ({ items }: KpiProps) => {
           </Box>
         </Box>
 
+        
+        <Box xcss={kpiBoxStyle}> 
+          <Label htmlFor="">Total Cost Points</Label>
+          <Box xcss={kpiValueStyle} style={{ color: "#0065FF" }}>
+            {" "}
+            {/* Blå */}
+            {totals.costpoints.toFixed(2)}
+          </Box>
+        </Box>
+
         <Box xcss={kpiBoxStyle}>
           <Label htmlFor="">Total PERT Cost (E)</Label>
           <Box xcss={kpiValueStyle} style={{ color: "#0065FF" }}>
             {" "}
             {/* Rød */}
             {totals.cost.toFixed(2)}
+          </Box>
+        </Box>
+
+        <Box xcss={kpiBoxStyle}>
+          <Label htmlFor="">Total Time Points</Label>
+          <Box xcss={kpiValueStyle} style={{ color: "#0065FF" }}>
+            {" "}
+            {/* Blå */}
+            {totals.timepoints.toFixed(2)}
           </Box>
         </Box>
 
