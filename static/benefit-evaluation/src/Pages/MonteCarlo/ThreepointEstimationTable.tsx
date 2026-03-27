@@ -368,7 +368,7 @@ export const ThreePointEstimationTable = ({
                       style={{ width: "5.5rem", textAlign: "center" }}
                       type="number"
                       isReadOnly // Denne er BEREGNET, ikke redigerbar her
-                      value={benefitM}
+                      value={benefitM.toFixed(2)}
                     />
                   </Box>
 
