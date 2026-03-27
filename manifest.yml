@@ -5,7 +5,7 @@ modules:
       queue: queue-name
       resolver:
         function: resolver
-      title: Benefit/Cost
+      title: Uncertainty Analysis
       layout: blank
   function:
     - key: resolver
@@ -27,4 +27,4 @@ permissions:
 app:
   runtime:
     name: nodejs20.x
-  id: ari:cloud:ecosystem::app/cca32e00-1884-43ce-946b-72052e90568b
+  id: ari:cloud:ecosystem::app/b1f3687d-d807-4acc-9e5e-39cc058d0914
