@@ -429,9 +429,9 @@ export const Analysis = () => {
     <>
       <PageHeader>Analysis</PageHeader>
       <Box>
-        <SectionMessage title="Understanding Your Portfolio Analysis">
+        <SectionMessage title="Understanding Your Uncertainty Analysis">
           <p>
-            This page analyzes your entire portfolio. It combines the{" "}
+            This page analyzes your entire project. It combines the{" "}
             <strong>Benefit</strong> (from the 'Estimation' matrix) with the{" "}
             <strong>Effort</strong> (from your 3-point estimates) to create
             priority scores and visualizations.
