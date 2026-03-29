@@ -18,5 +18,8 @@ export const goalCollectionApi = () => {
     changeRanking: (scopeId: string, id1: string, id2: string) => {
       return invoke("changeGoalCollectionRanking", { scopeId: scopeId, id1: id1, id2: id2 });
     },
+    flushAll: (scopeId: string) => {
+      return invoke("flushGoalCollections", { scopeId: scopeId });
+    },
   }
 }

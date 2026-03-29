@@ -23,6 +23,11 @@ export const goalCollectionResolver = (resolver: Resolver) => {
     return await deleteGoalCollection(scopeId, id);
   });
 
+  //Flush all
+  resolver.define('flushGoalCollections', async ({ payload: { scopeId } }) => {
+    return await flushGoalCollections(scopeId);
+  });
+
   //GetAll
   resolver.define('changeGoalCollectionRanking', async ({ payload: { scopeId, id1, id2 } }) => {
     return changeRanking(scopeId, id1, id2)

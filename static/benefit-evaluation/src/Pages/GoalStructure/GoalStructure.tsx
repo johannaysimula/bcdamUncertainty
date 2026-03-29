@@ -18,6 +18,7 @@ import { SelectGoalTier } from "../../Components/GoalTiers/SelectGoalTier";
 import { GoalTable } from "../../Components/GoalTiers/GoalTable";
 import { AdminGoalCollection } from "./AdminGoalCollection";
 import { DeleteGoalCollection } from "./DeleteGoalCollection";
+import { FlushGoalCollections } from "./FlushGoalCollections";
 import { Loading } from "../../Components/Common/Loading"; // Importer Loading
 import { Box, xcss } from "@atlaskit/primitives"; // Importer Box/xcss
 
@@ -50,6 +51,8 @@ export const GoalStructure = () => {
     useState<boolean>(false);
   const [deleteGoalCollection, setDeleteGoalCollection] =
     useState<GoalTier | null>(null);
+  const [showFlushGoalCollections, setShowFlushGoalCollections] =
+    useState<boolean>(false);
 
   const [scope] = useAppContext();
   const api = useAPI();
@@ -185,7 +188,18 @@ export const GoalStructure = () => {
       {/* 1. Viser dropdown KUN hvis det finnes Goal Collections */}
       {goalCollectionTiers.length > 0 && (
         <>
-          <PageHeader>Manage Goal Collections</PageHeader>
+          <PageHeader
+            actions={
+              <Button
+                appearance="danger"
+                onClick={() => setShowFlushGoalCollections(true)}
+              >
+                Delete all goal collections
+              </Button>
+            }
+          >
+            Manage Goal Collections
+          </PageHeader>
           <SelectGoalTier
             isDisabled={isFetching}
             onChange={(value) => {
@@ -258,6 +272,22 @@ export const GoalStructure = () => {
           close={(refresh: boolean) => {
             setShowEditGoalCollection(false);
             setEditGoalCollection(null);
+            if (refresh) {
+              setLoading(true);
+              fetchData().then((items) => {
+                setItems(items);
+                setLoading(false);
+              });
+            }
+          }}
+        />
+      )}
+
+      {/* Flush all goal collections */}
+      {showFlushGoalCollections && (
+        <FlushGoalCollections
+          close={(refresh: boolean) => {
+            setShowFlushGoalCollections(false);
             if (refresh) {
               setLoading(true);
               fetchData().then((items) => {
