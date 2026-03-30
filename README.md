@@ -26,7 +26,7 @@ npm install
 ```
 npm run build
 ```
-
+forge register if new app
 - Deploy your app by running, uses the output from ``npm run build`` to upload the app:
 ```
 forge deploy

@@ -16,10 +16,29 @@ import { DisconnectProject } from '../../Components/SettingsComponents/Disconnec
 import { ResetEverything } from '../../Components/SettingsComponents/ResetEverything'
 import { DeletePortfolio } from '../../Components/SettingsComponents/DeletePortfolio'
 import PageHeader from '@atlaskit/page-header'
+import { exportApi } from '../../Api/ExportApi'
 
 export const Settings = () => {
     const [scope] = useAppContext()
     const navigate = useNavigate()
+    const [isExporting, setIsExporting] = useState(false)
+
+    const handleExport = async () => {
+        setIsExporting(true)
+        try {
+            const data = await exportApi().exportData(scope.id)
+            const json = JSON.stringify(data, null, 2)
+            const blob = new Blob([json], { type: 'application/json' })
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = `goal-data-export-${scope.id}.json`
+            a.click()
+            URL.revokeObjectURL(url)
+        } finally {
+            setIsExporting(false)
+        }
+    }
 
     return (
         <>
@@ -54,6 +73,15 @@ export const Settings = () => {
                         </>
                     )}
                     <ResetEverything />
+                    <Inline space="space.300" spread="space-between">
+                        <h4>Export Goal Data</h4>
+                        <Button
+                            isDisabled={isExporting}
+                            onClick={handleExport}
+                        >
+                            {isExporting ? 'Exporting...' : 'Export'}
+                        </Button>
+                    </Inline>
                 </Stack>
             </div>
         </>

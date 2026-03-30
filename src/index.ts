@@ -1,4 +1,5 @@
 import Resolver from "@forge/resolver";
+import { exportResolver } from "./resolvers/ExportResolver";
 import { estimationResolver } from "./resolvers/EstimationResolver";
 import { goalCollectionResolver } from "./resolvers/GoalCollectionResolver";
 import { goalApi } from "./resolvers/GoalResolver";
@@ -24,6 +25,7 @@ const models = (resolver: Resolver) => {
   goalCollectionResolver(resolver);
   goalTierResolver(resolver);
   scopeResolver(resolver);
+  exportResolver(resolver);
 
   resolver.define("resetApp", async () => {
     await resetApp();

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/johan/AppData/Local/Temp/claude/C--Users-johan-bcdamUncertainty/e9abfb59-08fd-4c6d-8ce3-574c7acf7f80/tasks/**)",
+      "Bash(find \"/c/Users/johan/bcdamUncertaintyPeriodization/static\" -delete)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(mkdir -p \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation\")",
+      "Bash(rsync -a --exclude='node_modules' --exclude='build' \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp -r \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/src\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/package.json\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/package-lock.json\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/tsconfig.json\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp -r \"/c/Users/johan/bcdamUncertainty/static/benefit-evaluation/public\" \"/c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/\")",
+      "Bash(cp /c/Users/johan/bcdamPeriodization/static/benefit-evaluation/locales/en-US.json /c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/locales/)",
+      "Bash(cp /c/Users/johan/bcdamPeriodization/static/benefit-evaluation/locales/no-NO.json /c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/locales/)",
+      "Bash(cp:*)",
+      "Bash(for f:*)",
+      "Bash(do cp:*)",
+      "Bash(done)",
+      "Bash(cat /c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/src/NewGoalStructure/constants/*.ts)",
+      "Bash(cat /c/Users/johan/bcdamUncertaintyPeriodization/static/benefit-evaluation/src/NewGoalStructure/constants/*.tsx)"
+    ]
+  }
+}
